@@ -24,26 +24,9 @@ const ReviewCardDetails = () => {
     console.log("hello");
   }
 
-  // const { id, author, place, published_at, rating, content } = review;
-  if (review) {
-    // const { id, author, place, published_at, rating, content } = review;
-    // const date = moment(published_at).fromNow();
-    // return (
-    //   <ReviewCard
-    //     id={id}
-    //     author={author}
-    //     place={place}
-    //     date={date}
-    //     rating={rating}
-    //     content={content}
-    //   />
-    // );
-  }
-  // const published_at_date = moment(review.published_at).format("DD/MM/YYYY");
-
   return (
-    <div>
-      <ReviewCard review={review} handleClick={handleClick}/>
+    <div style={{display: "grid"}}>
+      <ReviewCard review={review} handleClick={handleClick} maxWidthStyle={'auto'}/>
     </div>
   );
 }

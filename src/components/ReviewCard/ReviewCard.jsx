@@ -3,7 +3,8 @@ import moment from "moment";
 
 import './reviewCard.scss'
 
-const ReviewCard = ({review, handleClick}) => {
+// maxWidthStyle is needed for review details view to be able to display the fully expanded review
+const ReviewCard = ({review, handleClick, maxWidthStyle}) => {
   const { id, author, place, published_at, rating, content } = review;
   const published_at_date = moment(published_at).format("DD/MM/YYYY");
 
@@ -12,10 +13,11 @@ const ReviewCard = ({review, handleClick}) => {
       key={id}
       className="review-card-container"
       onClick={() => handleClick(review)}
+      style={{maxWidth: `${maxWidthStyle}`}}
     >
       <div className="review-card-header">
         <h1>{place}</h1>
-        <div>{rating}</div>
+        <div>{rating} Stars</div>
       </div>
       <div className="review-card-content">{content}</div>
       <div className="review-card-footer">

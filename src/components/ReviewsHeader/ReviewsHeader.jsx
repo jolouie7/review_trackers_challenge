@@ -1,13 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
 
 import './reviewsHeader.scss'
 
 const ReviewsHeader = () => {
   return (
-    <div className='header-container'>
-      <h1>Reviews</h1>
+    <div className="header-container">
+      <h1>
+        <Link to='/' style={{color: '#fff', textDecoration: 'none'}}>Reviews</Link>
+      </h1>
     </div>
-  )
+  );
 }
 
 export default ReviewsHeader;

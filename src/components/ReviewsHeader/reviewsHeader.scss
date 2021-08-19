@@ -1,0 +1,10 @@
+$primaryColor: #0F52BA; // should be placed in a variables file
+
+.header-container {
+  background-color: $primaryColor;
+  padding: 1rem 0 1rem 7rem;
+
+  h1 {
+    color: #fff;
+  }
+}

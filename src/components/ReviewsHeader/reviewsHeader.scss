@@ -6,5 +6,10 @@ $primaryColor: #0F52BA; // should be placed in a variables file
 
   h1 {
     color: #fff;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 }

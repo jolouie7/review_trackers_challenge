@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import Reviews from '../../reviews.json';
 import ReviewCard from '../ReviewCard/ReviewCard';
 
+import './reviewCardList.scss'
+
 
 const ReviewCardList = () => {
   const history = useHistory();
@@ -14,14 +16,7 @@ const ReviewCardList = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        margin: "0 7rem",
-        justifyContent: "space-between",
-      }}
-    >
+    <div className="review-card-list-container">
       {Reviews.map((review) => (
         <ReviewCard handleClick={handleClick} review={review} maxWidthStyle={"350px"}/>
       ))}

@@ -7,7 +7,7 @@ const ReviewsHeader = () => {
   return (
     <div className="header-container">
       <h1>
-        <Link to='/' style={{color: '#fff', textDecoration: 'none'}}>Reviews</Link>
+        <Link to='/'>Reviews</Link>
       </h1>
     </div>
   );

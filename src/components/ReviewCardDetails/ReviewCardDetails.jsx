@@ -40,7 +40,7 @@ const ReviewCardDetails = () => {
   };
 
   const handleClick = () => {
-    console.log("hello");
+    
   }
 
   const handleEditResponse = () => {
@@ -61,8 +61,6 @@ const ReviewCardDetails = () => {
           response={response}
         />
       )}
-      {/* display textbox for the user to add a response */}
-      {/* have the response update the json object in the reviews.json file */}
 
       <form
         className={`${isResponseBoxVisible ? "show" : "hidden"}`}

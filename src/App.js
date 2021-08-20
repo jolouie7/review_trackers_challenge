@@ -1,12 +1,18 @@
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import ReviewCardList from './components/ReviewCardList/ReviewCardList';
-import ReviewsHeader from './components/ReviewsHeader/ReviewsHeader';
-import NotFound from './components/NotFound/NotFound';
-import ReviewCardDetails from './components/ReviewCardDetails/ReviewCardDetails';
+import Reviews from "./reviews.json";
+import ReviewCardList from "./components/ReviewCardList/ReviewCardList";
+import ReviewsHeader from "./components/ReviewsHeader/ReviewsHeader";
+import NotFound from "./components/NotFound/NotFound";
+import ReviewCardDetails from "./components/ReviewCardDetails/ReviewCardDetails";
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem("allReviews", JSON.stringify(Reviews));
+  }, [])
+
   return (
     <Router>
       <ReviewsHeader />

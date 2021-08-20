@@ -3,9 +3,9 @@ import moment from "moment";
 
 import './reviewCardResponse.scss';
 
-const ReviewCardResponse = ({handleEditResponse}) => {
-  const [review, setReview] = useState(JSON.parse(localStorage.getItem('review')));
-  const { id, author, place, published_at, rating, content, response } = review;
+const ReviewCardResponse = ({handleEditResponse, review, response}) => {
+  // const [review, setReview] = useState(JSON.parse(localStorage.getItem('review')));
+  const { id, author, place, published_at, rating, content } = review;
   const published_at_date = moment(published_at).format("DD/MM/YYYY");
 
   return (

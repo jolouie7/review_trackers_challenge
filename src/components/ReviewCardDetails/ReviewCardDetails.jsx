@@ -11,6 +11,12 @@ const ReviewCardDetails = () => {
   const [response, setResponse] = useState(JSON.parse(localStorage.getItem("review")).response);
   const [isResponseBoxVisible, setIsResponseBoxVisible] = useState(false);
 
+  useEffect(() => {
+    if (!response) {
+      setIsResponseBoxVisible(true);
+    }
+  }, [])
+
   const handleChange = (e) => {
     if (e.target.name === "response") {
       setResponse(e.target.value);
@@ -20,6 +26,17 @@ const ReviewCardDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("response: ", response);
+    const reviews = JSON.parse(localStorage.getItem("allReviews"));
+    for (let i = 0; i < reviews.length; i++) {
+      if (reviews[i].id === review.id) {
+        // console.log(reviews[i].id);
+        reviews[i].response = response;
+        setResponse(response);
+        console.log(reviews)
+        localStorage.setItem("allReviews", JSON.stringify(reviews));
+        setIsResponseBoxVisible(false);
+      }
+    }
   };
 
   const handleClick = () => {
@@ -37,7 +54,13 @@ const ReviewCardDetails = () => {
         handleClick={handleClick}
         maxWidthStyle={"auto"}
       />
-      <ReviewCardResponse handleEditResponse={handleEditResponse} />
+      {response && (
+        <ReviewCardResponse
+          handleEditResponse={handleEditResponse}
+          review={review}
+          response={response}
+        />
+      )}
       {/* display textbox for the user to add a response */}
       {/* have the response update the json object in the reviews.json file */}
 
@@ -54,7 +77,7 @@ const ReviewCardDetails = () => {
           onChange={handleChange}
           placeholder="Add a response"
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Add Response</button>
       </form>
     </div>
   );

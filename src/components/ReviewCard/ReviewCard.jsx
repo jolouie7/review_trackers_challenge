@@ -3,6 +3,7 @@ import moment from "moment";
 import { useHistory } from "react-router-dom";
 
 import './reviewCard.scss'
+import StarRating from '../StarRating/StarRating';
 
 // maxWidthStyle is needed for review details view to be able to display the fully expanded review
 const ReviewCard = ({review, maxWidthStyle}) => {
@@ -26,7 +27,7 @@ const ReviewCard = ({review, maxWidthStyle}) => {
     >
       <div className="review-card-header">
         <h1>{place}</h1>
-        <div>{rating} Stars</div>
+        <StarRating rating={rating}/>
       </div>
       <div className="review-card-content">{content}</div>
       <div className="review-card-footer">

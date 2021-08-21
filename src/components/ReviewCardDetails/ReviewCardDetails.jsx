@@ -35,6 +35,7 @@ const ReviewCardDetails = () => {
         // console.log(reviews[i].id);
         reviews[i].response = response;
         setSubmittedResponse(response);
+        localStorage.setItem("review", JSON.stringify(reviews[i]));
         console.log(reviews)
         localStorage.setItem("allReviews", JSON.stringify(reviews));
         setIsResponseBoxVisible(false);

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -9,8 +9,19 @@ import NotFound from "./components/NotFound/NotFound";
 import ReviewCardDetails from "./components/ReviewCardDetails/ReviewCardDetails";
 
 function App() {
+  const [reviews, setReviews] = useState([])
+
   useEffect(() => {
-    localStorage.setItem("allReviews", JSON.stringify(Reviews));
+    // if allReviews don't exist in localStorage, set it to localStorage
+    if (!localStorage.getItem("allReviews")) {
+      localStorage.setItem("allReviews", JSON.stringify(Reviews));
+    } else {
+      const allReviews = JSON.parse(localStorage.getItem("allReviews"));
+      setReviews(allReviews);
+    }
+    // const allReviews = localStorage.setItem("allReviews", JSON.stringify(Reviews));
+    // Get allReviews from localStorage
+    // setReviews(Reviews);
   }, [])
 
   return (
@@ -21,7 +32,7 @@ function App() {
           <ReviewCardDetails />
         </Route>
         <Route exact path="/">
-          <ReviewCardList />
+          <ReviewCardList reviews={reviews} />
         </Route>
         <Route path="*">
           <NotFound />

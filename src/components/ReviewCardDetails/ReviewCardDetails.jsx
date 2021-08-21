@@ -7,8 +7,11 @@ import ReviewCardResponse from '../ReviewCardResponse/ReviewCardResponse';
 import './reviewCardDetails.scss'
 
 const ReviewCardDetails = () => {
+  const initialResponse = JSON.parse(localStorage.getItem("review")).response;
   const [review, setReview] = useState(JSON.parse(localStorage.getItem("review")));
-  const [response, setResponse] = useState(JSON.parse(localStorage.getItem("review")).response);
+  const [submittedResponse, setSubmittedResponse] = useState("")
+  // const [response, setResponse] = useState(JSON.parse(localStorage.getItem("review")).response);
+  const [response, setResponse] = useState(initialResponse);
   const [isResponseBoxVisible, setIsResponseBoxVisible] = useState(false);
 
   useEffect(() => {
@@ -31,7 +34,7 @@ const ReviewCardDetails = () => {
       if (reviews[i].id === review.id) {
         // console.log(reviews[i].id);
         reviews[i].response = response;
-        setResponse(response);
+        setSubmittedResponse(response);
         console.log(reviews)
         localStorage.setItem("allReviews", JSON.stringify(reviews));
         setIsResponseBoxVisible(false);
@@ -40,7 +43,6 @@ const ReviewCardDetails = () => {
   };
 
   const handleClick = () => {
-    
   }
 
   const handleEditResponse = () => {
@@ -54,7 +56,7 @@ const ReviewCardDetails = () => {
         handleClick={handleClick}
         maxWidthStyle={"auto"}
       />
-      {response && (
+      {(submittedResponse || initialResponse) && (
         <ReviewCardResponse
           handleEditResponse={handleEditResponse}
           review={review}
@@ -75,7 +77,8 @@ const ReviewCardDetails = () => {
           onChange={handleChange}
           placeholder="Add a response"
         />
-        <button type="submit">Add Response</button>
+        <br />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

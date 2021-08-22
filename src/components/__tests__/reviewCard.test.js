@@ -1,8 +1,10 @@
+import { Redirect, Router } from "react-router-dom";
 import { mount, shallow } from "enzyme";
 import ReviewCardList from "../ReviewCardList/ReviewCardList";
 import ReviewCard from "../ReviewCard/ReviewCard";
 import StarRating from "../StarRating/StarRating";
 import App from "../../App";
+import { createMemoryHistory } from "history";
 
 const fakeLocalStorage = (function () {
   let store = {
@@ -46,14 +48,7 @@ const fakeLocalStorage = (function () {
   };
 })();
 
-describe("ReviewCardList", () => {
-  beforeEach(() => {
-    fakeLocalStorage.clear();
-    Object.defineProperty(window, "localStorage", {
-      value: fakeLocalStorage,
-    });
-  });
-
+describe("ReviewCard", () => {
   const reviews = [
     {
       id: "5d707203b65083001e956f0a",
@@ -75,30 +70,38 @@ describe("ReviewCardList", () => {
     },
   ];
 
+  beforeEach(() => {
+    window.localStorage.clear();
+    window.localStorage.setItem("allReviews", JSON.stringify(reviews));
+    window.localStorage.setItem("review", JSON.stringify(reviews[0]));
+  });
+
   it("renders without crashing", () => {
-    const wrapper = shallow(<ReviewCardList reviews={reviews} />);
+    const wrapper = shallow(
+      <ReviewCard review={reviews[0]} maxWidthStyle={"350px"} />
+    );
     expect(wrapper).toBeTruthy();
   });
 
-  it("renders a ReviewCard for each review", () => {
-    const wrapper = shallow(<ReviewCardList reviews={reviews} />);
-    expect(wrapper.find(ReviewCard)).toHaveLength(reviews.length);
+  it("renders with a review", () => {
+    const wrapper = shallow(
+      <ReviewCard
+        review={reviews[0]}
+        maxWidthStyle={"350px"}
+        onClick={() => {}}
+      />
+    );
+    expect(wrapper).toBeTruthy();
+    expect(wrapper.text()).toContain(reviews[0].content);
+    expect(wrapper.text()).toContain(reviews[0].author);
   });
 
-  it("renders a StarRating for each review", () => {
-    const wrapper = shallow(<ReviewCardList reviews={reviews} />);
-    expect(wrapper.containsMatchingElement(<ReviewCard />)).toEqual(true);
-  });
-
-  it("renders review card details when clicked", () => {
-    const wrapper = shallow(<ReviewCardList reviews={reviews} />);
-    const review = reviews[0];
-    wrapper.find(ReviewCard).at(0).simulate("click");
-    expect(wrapper.find(ReviewCard).at(0).props().review).toEqual(review);
-  });
-
-  it("throws error when nothing is rendered", () => {
-    const wrapper = shallow(<ReviewCardList reviews={[]} />);
-    expect(wrapper.find(ReviewCard)).toHaveLength(0);
+  it("renders a StarRating with the correct props", () => {
+    const component = <StarRating rating={5} />;
+    expect(component).toBeTruthy();
+    const wrapper = shallow(
+      <ReviewCard review={reviews[0]} maxWidthStyle={"350px"} />
+    );
+    expect(wrapper.containsMatchingElement(<StarRating />)).toEqual(true);
   });
 });

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import moment from 'moment';
 
 import ReviewCard from '../ReviewCard/ReviewCard';
 import ReviewCardResponse from '../ReviewCardResponse/ReviewCardResponse';
@@ -10,7 +9,6 @@ const ReviewCardDetails = () => {
   const initialResponse = JSON.parse(localStorage.getItem("review")).response;
   const [review, setReview] = useState(JSON.parse(localStorage.getItem("review")));
   const [submittedResponse, setSubmittedResponse] = useState("")
-  // const [response, setResponse] = useState(JSON.parse(localStorage.getItem("review")).response);
   const [response, setResponse] = useState(initialResponse);
   const [isResponseBoxVisible, setIsResponseBoxVisible] = useState(false);
 
@@ -32,11 +30,9 @@ const ReviewCardDetails = () => {
     const reviews = JSON.parse(localStorage.getItem("allReviews"));
     for (let i = 0; i < reviews.length; i++) {
       if (reviews[i].id === review.id) {
-        // console.log(reviews[i].id);
         reviews[i].response = response;
         setSubmittedResponse(response);
         localStorage.setItem("review", JSON.stringify(reviews[i]));
-        console.log(reviews)
         localStorage.setItem("allReviews", JSON.stringify(reviews));
         setIsResponseBoxVisible(false);
       }

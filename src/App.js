@@ -19,9 +19,7 @@ function App() {
       const allReviews = JSON.parse(localStorage.getItem("allReviews"));
       setReviews(allReviews);
     }
-    // const allReviews = localStorage.setItem("allReviews", JSON.stringify(Reviews));
-    // Get allReviews from localStorage
-    // setReviews(Reviews);
+    setReviews(Reviews); // Fixes issue of reviews not loading on first load
   }, [])
 
   return (

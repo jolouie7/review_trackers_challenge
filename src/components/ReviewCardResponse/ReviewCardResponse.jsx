@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from "moment";
 
 import './reviewCardResponse.scss';
 
 const ReviewCardResponse = ({handleEditResponse, review, response}) => {
-  // const [review, setReview] = useState(JSON.parse(localStorage.getItem('review')));
-  const { id, author, place, published_at, rating, content } = review;
+  const { author, published_at } = review;
   const published_at_date = moment(published_at).format("DD/MM/YYYY");
 
   return (

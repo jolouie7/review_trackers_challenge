@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from "moment";
+import { FaReply } from "react-icons/fa";
 
 import './reviewCardResponse.scss';
 
@@ -9,10 +10,15 @@ const ReviewCardResponse = ({handleEditResponse, review, response}) => {
 
   return (
     <div className="response-card-container">
-      <div>
-        <div>{response}</div>
-        <div>{author}</div>
-        <div>{published_at_date}</div>
+      <div className="response-card-content-container">
+        <FaReply />
+        <div className="response-card-content">
+          <div>{response}</div>
+          <div className="response-card-footer">
+            <div>{author}</div>
+            <div>{published_at_date}</div>
+          </div>
+        </div>
       </div>
       <div onClick={handleEditResponse}>Edit</div>
     </div>

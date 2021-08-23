@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import moment from "moment";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
+import { IoIosChatboxes } from "react-icons/io";
 
 import './reviewCard.scss'
 import StarRating from '../StarRating/StarRating';
@@ -58,7 +59,9 @@ const ReviewCard = ({review, maxWidthStyle}) => {
         <div>{author}</div>
         <div>{published_at_date}</div>
         {response && url === "http://localhost:3000/" ? (
-          <div>Response</div>
+          <div>
+            <IoIosChatboxes />
+          </div>
         ) : null}
       </div>
     </div>

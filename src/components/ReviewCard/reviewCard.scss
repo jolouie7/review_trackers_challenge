@@ -23,9 +23,16 @@
     background-color: #fff;
     font-size: 14px;
 
+    // Author
+    div:nth-child(1) {
+      font-weight: bold;
+    }
+    // Date
     div:nth-child(2) {
+      color: #6e7a75;
       padding-left: 1.5rem;
     }
+    // Response icon
     div:nth-child(3) {
       margin-left: auto;
     }

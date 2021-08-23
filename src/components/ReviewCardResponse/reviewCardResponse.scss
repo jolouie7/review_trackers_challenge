@@ -1,3 +1,5 @@
+$primaryColor: #0F52BA; // should be placed in a variables file
+
 .response-card-container {
   display: flex;
   justify-content: space-between;
@@ -8,4 +10,38 @@
   margin-bottom: 20px;
   margin-top: 20px;
   min-width: 300px;
+
+  .response-card-content-container {
+    display: flex;
+
+    svg {
+      margin-top: 6px;
+      color: $primaryColor;
+      margin-right: 2rem;
+    }
+  }
+
+  .response-card-content {
+    // Response content
+    div:nth-child(1) {
+      margin-bottom: 1rem;
+      font-size: 20px;
+    }
+
+    .response-card-footer {
+      display: flex;
+
+      // Author
+      div:nth-child(1) {
+        font-size: 13px;
+        font-weight: bold;
+      }
+      // Date
+      div:nth-child(2) {
+        font-size: 13px;
+        color: #6e7a75;
+        margin-left: 1.5rem;
+      }
+    }
+  }
 }

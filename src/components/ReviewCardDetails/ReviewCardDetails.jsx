@@ -26,7 +26,6 @@ const ReviewCardDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("response: ", response);
     const reviews = JSON.parse(localStorage.getItem("allReviews"));
     for (let i = 0; i < reviews.length; i++) {
       if (reviews[i].id === review.id) {
